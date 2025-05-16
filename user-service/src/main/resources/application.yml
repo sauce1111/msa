@@ -1,0 +1,19 @@
+# 랜덤 포트로 설정
+server:
+  port: 0
+
+spring:
+  application:
+    name: user-service
+
+# client 로 설정
+eureka:
+  instance:
+    # 랜덤포트 사용시 discovery 에서 인스턴스를 여러개 띄워도 0번 포트 하나만 보이는 이슈를 해결하기 위한 instance_id 설정
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.instance_id:${random.value}}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    # 서버의 위치에 microservice 를 저장하겠다는 뜻
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka

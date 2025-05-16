@@ -1,0 +1,13 @@
+# discovery 서버 port 설정
+server:
+  port: 8761
+
+spring:
+  application:
+    name: discovery-service
+
+# eureka server 역할의 프로젝트이므로 client 는 생성하지 않도록 설정
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
